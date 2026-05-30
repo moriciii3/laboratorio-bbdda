@@ -1,0 +1,56 @@
+services:
+  mongo-primary:
+    image: mongo:5
+    container_name: mongo-primary
+    command: ["--replSet", "rs-politica", "--bind_ip_all", "--port", "30001"]
+    volumes:
+      - mongo_primary_data:/data/db
+    ports:
+      - "30001:30001"
+    networks:
+      - mongo-cluster
+    healthcheck:
+      test: >
+        test $$(echo "rs.initiate({
+          _id:'rs-politica',
+          members:[
+            {_id:0, host:\"mongo-primary:30001\"},
+            {_id:1, host:\"mongo-secondary1:30002\"},
+            {_id:2, host:\"mongo-secondary2:30003\"}
+          ]
+        }).ok || rs.status().ok" | mongo --port 30001 --quiet) -eq 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  mongo-secondary1:
+    image: mongo:5
+    container_name: mongo-secondary1
+    command: ["--replSet", "rs-politica", "--bind_ip_all", "--port", "30002"]
+    volumes:
+      - mongo_secondary1_data:/data/db
+    ports:
+      - "30002:30002"
+    networks:
+      - mongo-cluster
+
+  mongo-secondary2:
+    image: mongo:5
+    container_name: mongo-secondary2
+    command: ["--replSet", "rs-politica", "--bind_ip_all", "--port", "30003"]
+    volumes:
+      - mongo_secondary2_data:/data/db
+    ports:
+      - "30003:30003"
+    networks:
+      - mongo-cluster
+
+networks:
+  mongo-cluster:
+    driver: bridge
+
+volumes:
+  mongo_primary_data:
+  mongo_secondary1_data:
+  mongo_secondary2_data:
