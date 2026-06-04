@@ -1,5 +1,8 @@
 # Laboratorio 2 Bases de Datos Avanzadas - MongoDB
 
+## Canva
+https://canva.link/4ssuud4l3s0sk3z
+
 ## 1. Milanote
 https://app.milanote.com/1WqvXv1a5RqTaD?p=eBAyBpEa6Vi
 
