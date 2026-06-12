@@ -1,0 +1,17 @@
+services:
+  neo4j:
+    image: neo4j
+    container_name: neo4j_lab3
+    ports:
+      - "7474:7474" # Interfaz gráfica web
+      - "7687:7687" # Puerto Bolt para conexión con Python
+    environment:
+      - NEO4J_AUTH=neo4j/password123 # Credenciales por defecto
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
+    volumes:
+      - ./data:/data
+      - ./logs:/logs
+      - ./import:/var/lib/neo4j/import
+      - ./plugins:/plugins
