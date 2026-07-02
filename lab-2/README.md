@@ -26,6 +26,8 @@ Verificar que quedó listo el cambio:
 Get-Content "C:\Windows\System32\drivers\etc\hosts"
 ```
 
+!Es necesario que la carpeta con discursos "DiscursosOriginales" se encuentr en la misma ruta de este notebook para que el proceso de carga de datos funcione correctamente!
+
 ### 3.1. Levantar arquitectura MongoDB
 Ejecutamos el comando de compose para levantar la arquitectura de 3 nodos
 ```bash

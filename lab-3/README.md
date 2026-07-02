@@ -16,4 +16,13 @@ Para trabajar deben prender los contenedores de Docker.
 docker-compose up -d --build
 ```
 
-Luego ejecuten lo que está en el jupyter, importante descargar la libreria de neo4j.
+Finalmente, los puertos abiertos son:
+
+```bash
+localhost:7474 (Neo4j Browser)
+localhost:7687 (Bolt)
+```
+
+La contraseña para el usuario `neo4j` es `password123`.
+
+Luego ejecuten lo que está en el Jupyter.
